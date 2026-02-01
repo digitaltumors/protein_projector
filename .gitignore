@@ -105,4 +105,4 @@ ENV/
 .mypy_cache/
 
 # ignore the dnanexus tarball
-elasticnet_dre.tar.gz
+protein_projector.tar.gz
