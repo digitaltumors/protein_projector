@@ -1,0 +1,53 @@
+{
+  "name": "protein_projector",
+  "title": "Protein Projector",
+  "summary": "Runs Protein Projector from Cell Mapping Toolkit",
+  "dxapi": "1.0.0",
+  "version": "@@VERSION@@",
+  "inputSpec": [
+    {
+      "name": "input_rocrate",
+      "label": "Input Training/Test RO-Crate",
+      "class": "file",
+      "optional": false,
+      "patterns": ["*.tar", "*.tar.gz"],
+      "help": "Tar or tar.gz file of RO-Crate directory containing training or test data adhering to format of test or train RO-Crates noted here: https://aixport.readthedocs.io/en/latest/inputs.html"
+    },
+    {
+      "name": "mode",
+      "label": "Processing Mode",
+      "class": "string",
+      "optional": false,
+      "help": "Processing mode for the model, [train,test,predict,optimizetrain] as noted here: https://aixport.readthedocs.io/en/latest/expectedmodelinterface.html"
+    },
+    {
+      "name": "model",
+      "label": "Trained Model",
+      "class": "file",
+      "optional": true,
+      "help": "Tar or tar.gz RO-Crate containing the trained model, only needed for 'test' or 'predict' mode as noted here: https://aixport.readthedocs.io/en/latest/inputs.html"
+    }
+  ],
+  "outputSpec": [{ "name": "results_tar", "class": "file" }],
+  "runSpec": {
+    "timeoutPolicy": {
+      "*": {
+        "hours": 4
+      }
+    },
+    "interpreter": "bash",
+    "file": "src/script.sh",
+    "distribution": "Ubuntu",
+    "release": "24.04",
+    "version": "0"
+  },
+  "regionalOptions": {
+    "aws:us-east-1": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem1_ssd1_v2_x8"
+        }
+      }
+    }
+  }
+}
