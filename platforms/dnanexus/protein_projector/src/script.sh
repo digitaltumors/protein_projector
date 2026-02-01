@@ -9,9 +9,9 @@ main() {
     tar -zxf "${input_rocrate_path[0]}" -C "$HOME/out"
     echo "Prefix: ${input_rocrate_prefix[0]}"
 
-    docker load -i /elasticnet_dre.tar.gz
-
-    image="digitaltumors/elasticnet_dre:0.1.0"
+    docker load -i /protein_projector.tar.gz
+    # sets image to load
+    image="digitaltumors/protein_projector:@@VERSION@@"
 
     # Run container, mounting DNAnexus in/out
     docker run --rm \
