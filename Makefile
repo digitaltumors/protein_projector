@@ -74,7 +74,9 @@ build/protein_projector/dxapp.json: platforms/dnanexus/protein_projector/dxapp.j
 	echo "Copying dxapp.json to $@ and setting version"
 
 build/protein_projector/src/%.sh: platforms/dnanexus/protein_projector/src/%.sh
-	@cp $< $@
+	@cv=` grep 'RUN pip install cellmaps_coembedding==' docker/Dockerfile | sed "s/^.*==//"`; \
+	cat $< | sed "s/@@VERSION@@/$$cv/g" > $@
+	@echo "Copying scripts and setting proper versions"
 
 build/protein_projector/test/%.py: platforms/dnanexus/protein_projector/test/%.py
 	@cp $< $@
