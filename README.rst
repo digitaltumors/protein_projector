@@ -22,15 +22,21 @@ Build Dependencies
 Creating Docker Image
 -----------------------
 
+The make target **dockerbuild** will copy over and adjust DNAnexus applet files from ``platforms/dnanexus/protein_projector``
+and put them under ``build/protein_projector``. This target will also create a Docker image and store it
+under the ``build/protein_projector/resources``. The version of the image and the applet
+will be based on the version of cellmaps_coembedding package as specified in ``docker/Dockerfile``
 
-```Bash
-git clone https://github.com/digitaltumors/protein_projector
-make dockerbuild
-```
+.. code-block:: bash
+
+    git clone https://github.com/digitaltumors/protein_projector
+    make dockerbuild
+
 
 Creating DNAnexus Applet
 ----------------------------
 
-```Bash
-git clone
-```
+.. code-block:: bash
+
+    git clone https://github.com/digitaltumors/protein_projector
+
