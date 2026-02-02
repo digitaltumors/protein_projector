@@ -89,7 +89,9 @@ applet: build/protein_projector/resources/protein_projector.tar.gz \
         $(MD_TARGETS) \
         $(SH_TARGETS) \
         $(PY_TARGETS)
-	@echo "Build complete."
+	@echo "Build complete. Run the following with project id set"
+	@echo "cd build/protein_projector ; dx build -f -d <PROJECT ID>:/apps/protein_projector"
+
 
 dockerpush: ## push image to dockerhub
 	@cv=` grep 'RUN pip install cellmaps_coembedding==' docker/Dockerfile | sed "s/^.*==//"`; \
