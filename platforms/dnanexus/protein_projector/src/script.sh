@@ -4,6 +4,17 @@ set -euo pipefail
 main() {
     dx-download-all-inputs --parallel   # downloads into ~/in/<input_name>/... :contentReference[oaicite:3]{index=3}
 
+
+    embedfiles=()
+    mkdir -p "$HOME/in/"
+    pushd "$HOME/in/" 2>&1 >/dev/null
+    for f in $(jq -r '.files[]["$dnanexus_link"]' "$embedding_list"); do
+       name=$(dx describe "$f" --json | jq -r .name)
+       dx download "$f" -o "$name"
+       embedfiles+=("$name")
+    done
+    popd 2>&1 >/dev/null
+
     mkdir -p "$HOME/out/"
     embedding_list="${input_embeddings[*]}"
     echo "Embedding list is: $embedding_list"
@@ -18,7 +29,7 @@ main() {
       -v "$HOME/out:/out" \
       "$image" \
       -vvv \
-        --embeddings $embedding_list \
+        --embeddings "${embedfiles[@]}" \
         --algorithm "proteinprojector" \
         "/out/results_tar" || true
 
