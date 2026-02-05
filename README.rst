@@ -31,13 +31,24 @@ will be based on the version of cellmaps_coembedding package as specified in ``d
 .. code-block:: bash
 
     git clone https://github.com/digitaltumors/protein_projector
-    make dockerbuild
+    make build/protein_projector/resources/protein_projector.tar.gz
 
 
 Creating DNAnexus Applet
 ----------------------------
 
+Code below assumes repo has already been cloned. The Docker image will be built if not done already.
+
 .. code-block:: bash
 
-    git clone https://github.com/digitaltumors/protein_projector
+    make applet
+    cd build/protein_projector
+    dx build -f -d <PROJECT ID>:/apps/protein_projector
 
+Citation
+----------------
+
+Leah V Schaffer, Mayank Jain, Rami Nasser, Roded Sharan, Trey Ideker, 
+Unifying proteomic technologies with ProteinProjector, 
+Bioinformatics Advances, Volume 5, Issue 1, 2025, vbaf266, 
+https://doi.org/10.1093/bioadv/vbaf266

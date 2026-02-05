@@ -14,7 +14,10 @@
       "help": "TSV files containing input embeddings. Should include 2 or more files."
     }
   ],
-  "outputSpec": [{ "name": "results_tar", "class": "file" }],
+  "outputSpec": [{ "name": "proteinprojector_results_tar", 
+                   "label": "Results",
+                   "class": "file",
+                   "help": "Gzipped tarball of of results. The embedding is located in coembedding_emd.tsv for more information on format outputs refer to: https://cellmaps-coembedding.readthedocs.io/en/latest/outputs.html" }],
   "runSpec": {
     "timeoutPolicy": {
       "*": {

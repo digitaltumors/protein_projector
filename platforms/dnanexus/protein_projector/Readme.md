@@ -24,3 +24,10 @@ G4  0.1 0.2 0.3 0.4 0.5
 ```
 
 **NOTE:** All embedding files must have the same dimension.
+
+The implementation of ProteinProjector is part of the Cell Mapping Toolkit Coembedding tool. For
+more information visit: https://github.com/idekerlab/cellmaps_coembedding
+
+To cite:
+
+Leah V Schaffer, Mayank Jain, Rami Nasser, Roded Sharan, Trey Ideker, Unifying proteomic technologies with ProteinProjector, Bioinformatics Advances, Volume 5, Issue 1, 2025, vbaf266, https://doi.org/10.1093/bioadv/vbaf266
