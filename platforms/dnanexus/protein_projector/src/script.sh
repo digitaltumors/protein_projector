@@ -4,10 +4,9 @@ set -euo pipefail
 main() {
     dx-download-all-inputs --parallel   # downloads into ~/in/<input_name>/... :contentReference[oaicite:3]{index=3}
 
-    pushd "$HOME/in/input_rocrate"
     mkdir -p "$HOME/out/"
-    tar -zxf "${input_rocrate_path[0]}" -C "$HOME/out"
-    echo "Prefix: ${input_rocrate_prefix[0]}"
+    embedding_list="${input_embeddings[*]}"
+    echo "Embedding list is: $embedding_list"
 
     docker load -i /protein_projector.tar.gz
     # sets image to load
@@ -19,9 +18,8 @@ main() {
       -v "$HOME/out:/out" \
       "$image" \
       -vvv \
-        --input_crate "/out/${input_rocrate_prefix[0]}" \
-        --mode "$mode" \
-        ${model:+--model /in/model} \
+        --embeddings $embedding_list \
+        --algorithm "proteinprojector" \
         "/out/results_tar" || true
 
     ecode=$?

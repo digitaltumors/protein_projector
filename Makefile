@@ -74,11 +74,13 @@ build/protein_projector/dxapp.json: platforms/dnanexus/protein_projector/dxapp.j
 	echo "Copying dxapp.json to $@ and setting version"
 
 build/protein_projector/src/%.sh: platforms/dnanexus/protein_projector/src/%.sh
+	@mkdir -p `dirname $@`
 	@cv=` grep 'RUN pip install cellmaps_coembedding==' docker/Dockerfile | sed "s/^.*==//"`; \
 	cat $< | sed "s/@@VERSION@@/$$cv/g" > $@
 	@echo "Copying scripts and setting proper versions"
 
 build/protein_projector/test/%.py: platforms/dnanexus/protein_projector/test/%.py
+	@mkdir -p `dirname $@`
 	@cp $< $@
 
 build/protein_projector/%.md: platforms/dnanexus/protein_projector/%.md
@@ -88,12 +90,12 @@ applet: build/protein_projector/resources/protein_projector.tar.gz \
         build/protein_projector/dxapp.json \
         $(MD_TARGETS) \
         $(SH_TARGETS) \
-        $(PY_TARGETS)
+        $(PY_TARGETS) ## Builds the DNAnexus applet
 	@echo "Build complete. Run the following with project id set"
 	@echo "cd build/protein_projector ; dx build -f -d <PROJECT ID>:/apps/protein_projector"
 
 
-dockerpush: ## push image to dockerhub
+dockerpush: ## Push image to dockerhub
 	@cv=` grep 'RUN pip install cellmaps_coembedding==' docker/Dockerfile | sed "s/^.*==//"`; \
 	docker push digitaltumors/protein_projector:$$cv
 

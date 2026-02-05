@@ -1,8 +1,9 @@
 Protein Projector
 ========================
 
-This repo exposes `Protein Projector <https://doi.org/10.1093/bioadv/vbaf266>`__ as a
-`Docker container <https://www.docker.com/resources/what-container/>`__ and a
+This repo exposes `Protein Projector <https://doi.org/10.1093/bioadv/vbaf266>`__ implemented in 
+`Cell Mapping Toolkit Coembedding <https://github.com/idekerlab/cellmaps_coembedding>`__ 
+as a `Docker container <https://www.docker.com/resources/what-container/>`__ and a
 `DNAnexus Applet <https://documentation.dnanexus.com/faqs/developing-apps-and-applets>`__
 
 For Developers
