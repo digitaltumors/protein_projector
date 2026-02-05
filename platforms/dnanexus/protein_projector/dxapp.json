@@ -8,11 +8,8 @@
     {
       "name": "input_embeddings",
       "label": "Input embedding files",
-      "class": "array",
-      "items": {
-        "class": "file",
-        "patterns": ["*.tsv"] 
-      },
+      "class": "array:file",
+      "patterns": ["*.tsv"],
       "optional": false,
       "help": "TSV files containing input embeddings. Should include 2 or more files."
     }
